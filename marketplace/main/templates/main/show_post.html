@@ -1,0 +1,18 @@
+{% extends 'main/layout.html' %}
+
+{% block content %}
+<h1>{{post.title}}</h1>
+
+{% if post.photo %}
+<p><img width="190px" class="img-article-left" src="{{post.photo.url}}"></p>
+{% endif %}
+<div>
+    <h3>  Цена: {{ post.price }} руб.  </h3>
+</div>
+
+<div>
+    <h3>О товаре:</h3>{{post.content|linebreaks}}
+</div>
+
+
+{% endblock %}
