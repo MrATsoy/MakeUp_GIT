@@ -11,9 +11,10 @@
     <div>
         {% for m in menu %}
         <ul>
-            <a href="{% url m.url_name %}">{{m.title}}</a>
+            <li><a href="{% url m.url_name %}">{{m.title}}</a></li>
         </ul>
         {% endfor %}
+        <li><a href="{% url 'register' %}">Регистрация</a> | <a href="{% url 'login' %}"> Войти</a></li>
         <a href="admin/">Администрация</a>
     </div>
     {% show_categories %}
