@@ -3,8 +3,13 @@
 
 {% block content %}
     <div class="menu">
+		<div class="search_stroke">
+			<form action="" method="post">
 
-        {% for p in products %}
+				<input type="text" placeholder="Искать">
+			</form>
+		</div>
+		{% for p in products %}
             <li><div class="article-panel">
 	<p class="first">Категория: {{p.cat}}</p>
 </div>
@@ -15,10 +20,10 @@
 {% endif %}
 
 	{% autoescape on %}
-	{{p.content|linebreaks|truncatewords:50}}
+	{{p.content|linebreaks|truncatewords:10}}
 	{% endautoescape %}
 			<div class="clear"></div>
-			<p class="link-read-post"><a href="{{ p.get_absolute_url }}">Подробнее</a></p>
+			<p class="link-read-post"><a href="{{ p.get_absolute_url }}" class="btn btn-warning">Подробнее</a></p>
 			</li>
 		<hr>
         {% endfor %}
