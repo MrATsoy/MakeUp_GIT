@@ -4,7 +4,7 @@
 {% block content %}
   {% for c in cats %}
     <div>
-      <a href="">{{c.name}}</a>
+      <a href="{% url 'home'%}">{{c.name}}</a>
     </div>
   {% endfor %}
 {% endblock %}

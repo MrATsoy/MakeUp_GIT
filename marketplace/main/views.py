@@ -5,7 +5,7 @@ from .models import *
 
 menu = [
     {'title': 'Главная', 'url_name': 'home'},
-    {'title': 'Категории ', 'url_name': 'cats'},
+
     {'title': 'Корзина', 'url_name': 'basket'},
 ]
 
@@ -32,13 +32,13 @@ def basket(request):
     return HttpResponse('basket')
 
 
-def show_categories(request):
-    cats = Category.objects.all()
+def show_categories(request, cat_slug):
+    products = Product.objects.filter(cat__slug=cat_slug)
     context = {
         'menu': menu,
-        'cats': cats
+        'products': products
     }
-    return render(request, 'main/show_categories.html', context=context)
+    return render(request, 'main/index.html', context=context)
 
 
 
