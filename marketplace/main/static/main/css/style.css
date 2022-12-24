@@ -1,0 +1,12 @@
+html, body {
+    font-family: 'Arial'
+}
+
+ul a {text-decoration: none}
+
+.menu img {
+    width: 150px;
+}
+
+li a {text-decoration: none}
+li {list-style-type: none}
