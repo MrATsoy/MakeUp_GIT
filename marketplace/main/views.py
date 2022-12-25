@@ -4,7 +4,7 @@ from django.contrib.auth.views import LoginView
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, ListView
+from django.views.generic import CreateView, ListView, DeleteView
 
 from .forms import RegisterUserForm
 from .models import *
@@ -25,13 +25,17 @@ class ProductHome(DataMixin, ListView):
 
 
 
-def show_post(request, post_slug):
-    post = get_object_or_404(Product, slug=post_slug)
-    context = {
-        'post': post,
-        'menu': menu,
-    }
-    return render(request, 'main/show_post.html', context=context)
+class ShowPost(DataMixin, DeleteView):
+    model = Product
+    template_name = 'main/show_post.html'
+    slug_url_kwarg = 'post_slug'
+    context_object_name = 'post'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title="NameSite")
+        return dict(list(context.items()) + list(c_def.items()))
+
 
 
 class ProductCategories(DataMixin, ListView):
@@ -49,8 +53,18 @@ class ProductCategories(DataMixin, ListView):
         return dict(list(context.items()) + list(c_def.items()))
 
 
-def login(request):
-    return HttpResponse('login')
+class LoginUser(DataMixin, LoginView):
+    form_class = AuthenticationForm
+    template_name = 'main/login.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title="NameSite")
+        return dict(list(context.items()) + list(c_def.items()))
+
+    def get_success_url(self):
+        return reverse_lazy('home')
+
 
 class RegisterUser(DataMixin, CreateView):
     form_class = RegisterUserForm
@@ -67,18 +81,6 @@ class RegisterUser(DataMixin, CreateView):
         login(self.request, user)
         return redirect('home')
 
-
-class LoginUser(LoginView):
-    form_class = AuthenticationForm
-    template_name = 'main/login.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['menu'] = menu
-        return context
-
-    def get_success_url(self):
-        return reverse_lazy('home')
 
 
 def logout_user(request):
