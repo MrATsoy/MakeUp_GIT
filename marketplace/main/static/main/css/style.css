@@ -6,7 +6,7 @@ html, body {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    padding: 21px;
+    padding: 18px;
     background-color: #211640;
     margin-bottom: 10px
 }
@@ -14,6 +14,11 @@ html, body {
 .mainmenu a{
     font-size: 30px;
     color: white
+}
+
+.mainmenu a:hover {
+    color: orange;
+    transition: 0.3s
 }
 
 .list-cats a{
@@ -33,6 +38,19 @@ aside {
     margin-right: 25px;
     font-size: 22px;
     line-height: 50px;
+}
+
+aside img {
+    width: 120px;
+    float: left;
+    col
+}
+
+
+aside .logo {
+    font-size: 40px;
+    margin-left: 10px;
+    font-weight: bold;
 }
 
 img.img-article-left {
@@ -55,7 +73,6 @@ img.img-article-left {
     margin: 18px;
     width:500px;
     height: 250px;
-
     background-color: #ebe8e6;
     border-radius: 10px;
 
@@ -81,5 +98,65 @@ img.img-article-left {
 }
 
 .first {
-    margin: 10px
+    margin: 10px;
+    background-color: #d1cec5;
+    border-radius: 5px;
+    width: 300px;
+    padding-left: 5px
 }
+
+.little_change {
+    color: black;
+    font-size: 30px
+}
+
+.registration-form {
+    flex-direction: column
+}
+
+
+.logout-panel {
+    color: orange;
+    font-size: 30px;
+    vertical-align: 15px;
+
+}
+
+
+.cats a {
+    color: black;
+}
+
+.cats a:hover {
+    color: orange;
+    transition: 0.3s;
+
+}
+
+
+aside .little_change {
+    color:  #3c1266;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
