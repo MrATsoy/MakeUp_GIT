@@ -6,7 +6,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, DeleteView
 
-from .forms import RegisterUserForm
+from .forms import RegisterUserForm, AddProductForm
 from .models import *
 from .utils import *
 # Create your views here.
@@ -81,6 +81,21 @@ class RegisterUser(DataMixin, CreateView):
         login(self.request, user)
         return redirect('home')
 
+
+
+def add_product(request):
+    if request.method == 'POST':
+        form = AddProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = AddProductForm()
+    context = {
+        'menu': menu,
+        'form': form
+    }
+    return render(request, 'main/add_product.html', context=context)
 
 
 def logout_user(request):

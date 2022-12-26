@@ -24,7 +24,7 @@ class Product(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=255, db_index=True)
-    slug = models.SlugField(max_length=255,db_index=True, verbose_name='url', unique=True)
+    slug = models.SlugField(max_length=255, db_index=True, verbose_name='url', unique=True)
 
     def __str__(self):
         return self.name

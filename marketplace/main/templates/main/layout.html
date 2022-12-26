@@ -20,6 +20,7 @@
                 </ul>
             {% endfor %}
         {% if request.user.is_authenticated %}
+            <div class="add_product"><li><a href="{% url 'add_product' %}">Добавить товар</a></li></div>
             <div class="logout-panel"><li class="list-cats"><a href="">{{ user.username }} |</a> <a href="{% url 'logout' %}">Выйти</a></li></div>
         {% else %}
             <div class="register-panel"><li class="list-cats"><a href="{% url 'register' %}">Регистрация |</a><a href="{% url 'login' %}"> Войти</a></li></div>
